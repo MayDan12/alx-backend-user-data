@@ -4,7 +4,8 @@ A function that returns the log massage obfuscated
 """
 import re
 
-def filter_datum(fields, redation, message, seperator):
-    """"""
-    pattern = f"({'|'.join(fields)})=([^ {seperator}]*)"
-    return re.sub(pattern, lambda m: f"{m.group(1)}={redation}", message)
+
+
+def filter_datum(fields, redaction, message, separator=" "):
+    pattern = r"(?:"+ separator + r"(?:(?:"+ "|".join(fields)+ r")\b.+?))"
+    return re.sub(pattern, redaction, message)
